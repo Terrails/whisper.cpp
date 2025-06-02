@@ -25,7 +25,7 @@ RUN apt-get update && \
     && rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*
 
 # Ref: https://stackoverflow.com/a/53464012
-#ENV LD_LIBRARY_PATH ${CUDA_LIB_PATH}:$LD_LIBRARY_PATH
+ENV LD_LIBRARY_PATH=${CUDA_LIB_PATH}:$LD_LIBRARY_PATH
 
 COPY .. .
 # Enable cuBLAS
