@@ -10,15 +10,15 @@ ARG BASE_CUDA_RUN_CONTAINER=nvidia/cuda:${CUDA_VERSION}-runtime-ubuntu${UBUNTU_V
 ARG CUDA_LIB_PATH=/usr/local/cuda-${CUDA_MAIN_VERSION}/compat
 
 FROM ${BASE_CUDA_DEV_CONTAINER} AS build
-WORKDIR /app
-
+# Transfer the path to this stage
+ARG CUDA_LIB_PATH
 # Unless otherwise specified, we make a fat build.
 ARG CUDA_DOCKER_ARCH=default
 # Set nvcc architecture
 ENV CUDA_DOCKER_ARCH=${CUDA_DOCKER_ARCH}
 
-#RUN apt-get update && apt-get install software-properties-common
-#RUN add-apt-repository --remove ppa:vikoadi/ppa
+WORKDIR /app
+
 RUN sed -i 's|http://archive.ubuntu.com/ubuntu|http://us.archive.ubuntu.com/ubuntu|g' /etc/apt/sources.list
 RUN apt-get update && \
     apt-get install -y build-essential libsdl2-dev wget cmake git \
