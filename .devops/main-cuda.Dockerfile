@@ -29,7 +29,7 @@ ENV LD_LIBRARY_PATH=${CUDA_LIB_PATH}:$LD_LIBRARY_PATH
 
 COPY .. .
 # Enable cuBLAS
-RUN make base.en CMAKE_ARGS="-DGGML_CUDA=1"
+RUN make -j$(nproc) base.en CMAKE_ARGS="-DGGML_CUDA=1"
 
 FROM ${BASE_CUDA_RUN_CONTAINER} AS runtime
 # LD_LIBRARY_PATH breaks CUDA in the container, have to do more testing to see what else is unnecessary
