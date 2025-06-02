@@ -17,8 +17,9 @@ ARG CUDA_DOCKER_ARCH=default
 # Set nvcc architecture
 ENV CUDA_DOCKER_ARCH=${CUDA_DOCKER_ARCH}
 
-RUN apt-get update && apt-get install software-properties-common
-RUN add-apt-repository --remove ppa:vikoadi/ppa
+#RUN apt-get update && apt-get install software-properties-common
+#RUN add-apt-repository --remove ppa:vikoadi/ppa
+RUN sed -i 's|http://archive.ubuntu.com/ubuntu|http://us.archive.ubuntu.com/ubuntu|g' /etc/apt/sources.list
 RUN apt-get update && \
     apt-get install -y build-essential libsdl2-dev wget cmake git \
     && rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*
