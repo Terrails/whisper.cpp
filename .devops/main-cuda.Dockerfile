@@ -1,7 +1,7 @@
 ARG UBUNTU_VERSION=22.04
 # This needs to generally match the container host's environment.
 ARG CUDA_VERSION=12.8.0
-ARG CUDA_MAIN_VERSION=12.8
+#ARG CUDA_MAIN_VERSION=12.8
 # Target the CUDA build image
 ARG BASE_CUDA_DEV_CONTAINER=nvidia/cuda:${CUDA_VERSION}-devel-ubuntu${UBUNTU_VERSION}
 # Target the CUDA runtime image
@@ -22,7 +22,7 @@ RUN apt-get update && \
     && rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*
 
 # Ref: https://stackoverflow.com/a/53464012
-ENV LD_LIBRARY_PATH ${CUDA_LIB_PATH}:$LD_LIBRARY_PATH
+#ENV LD_LIBRARY_PATH ${CUDA_LIB_PATH}:$LD_LIBRARY_PATH
 
 COPY .. .
 # Enable cuBLAS
