@@ -43,4 +43,5 @@ RUN apt-get update && \
 
 COPY --from=build /app /app
 ENV PATH=/app/build/bin:$PATH
-ENTRYPOINT [ "bash", "-c" ]
+ENTRYPOINT [ "whisper-server" ]
+
